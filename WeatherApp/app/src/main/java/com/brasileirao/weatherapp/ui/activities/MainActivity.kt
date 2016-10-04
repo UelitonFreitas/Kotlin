@@ -1,11 +1,16 @@
-package com.brasileirao.weatherapp
+package com.brasileirao.weatherapp.ui.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
+import com.brasileirao.weatherapp.R
+import com.brasileirao.weatherapp.data.Request
+import com.brasileirao.weatherapp.ui.adapters.ForecastListAdapter
+import org.jetbrains.anko.async
+import org.jetbrains.anko.find
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,19 +28,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val forecastList = findViewById(R.id.forecast_list) as RecyclerView
+        val forecastList: RecyclerView = find(R.id.forecast_list)
         forecastList.layoutManager = LinearLayoutManager(this)
         forecastList.adapter = ForecastListAdapter(items)
     }
 
+    val url = "http://api.openweathermap.org/data/2.5/forecast/daily?" +
+            "APPID=15646a06818f61f7b8d7823ca833e1ce&q=94043&mode=json&units=metric&cnt=7"
+
     override fun onResume() {
         super.onResume()
-        toast(message = "Hi There!!", length = Toast.LENGTH_LONG)
-    }
-
-    fun toast(message : String = "Hello",
-              tag : String = MainActivity::class.java.simpleName,
-              length : Int = Toast.LENGTH_SHORT){
-        Toast.makeText(this, " [$tag] $message", length).show()
+        async() {
+            Request(url).run()
+            uiThread { longToast("Request performed") }
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.brasileirao.weatherapp
+package com.brasileirao.weatherapp.ui.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
