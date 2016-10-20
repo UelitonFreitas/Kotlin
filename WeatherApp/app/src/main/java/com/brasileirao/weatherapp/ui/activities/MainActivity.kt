@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.brasileirao.weatherapp.R
+import com.brasileirao.weatherapp.domain.Forecast
 import com.brasileirao.weatherapp.domain.RequestForecastCommand
 import com.brasileirao.weatherapp.ui.adapters.ForecastListAdapter
 import org.jetbrains.anko.async
 import org.jetbrains.anko.find
+import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +34,13 @@ class MainActivity : AppCompatActivity() {
 
         async() {
             val result = RequestForecastCommand("94043").execute()
-            uiThread { forecastList.adapter = ForecastListAdapter(result) }
+            uiThread {
+                forecastList.adapter = ForecastListAdapter(result, object : ForecastListAdapter.OnItemClickListner {
+                    override fun invoke(forecast: Forecast) {
+                        toast(forecast.date)
+                    }
+                })
+            }
         }
     }
 }
