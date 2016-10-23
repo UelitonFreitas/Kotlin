@@ -1,4 +1,4 @@
-package com.brasileirao.weatherapp.domain
+package com.brasileirao.weatherapp.domain.commands
 
 /**
  * Created by ueliton on 10/4/16.

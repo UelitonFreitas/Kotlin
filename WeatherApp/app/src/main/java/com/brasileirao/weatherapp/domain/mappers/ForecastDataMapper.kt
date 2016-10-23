@@ -1,8 +1,9 @@
-package com.brasileirao.weatherapp.domain
+package com.brasileirao.weatherapp.domain.mappers
 
 import com.brasileirao.weatherapp.data.Forecast
-import com.brasileirao.weatherapp.domain.Forecast as ModelForecast
+import com.brasileirao.weatherapp.domain.models.Forecast as ModelForecast
 import com.brasileirao.weatherapp.data.ForecastResult
+import com.brasileirao.weatherapp.domain.models.ForecastList
 import java.text.DateFormat
 import java.util.*
 
@@ -16,12 +17,12 @@ class ForecastDataMapper {
                 convertForecastListToDomain(forecast.list))
     }
 
-    private fun convertForecastListToDomain(list: List<Forecast>): List<ModelForecast> {
+    private fun convertForecastListToDomain(list: List<Forecast>): List<com.brasileirao.weatherapp.domain.models.Forecast> {
         return list.map { convertForecastItemToDomain(it) }
     }
 
-    private fun convertForecastItemToDomain(forecast: Forecast): ModelForecast {
-        return ModelForecast(convertDate(forecast.dt),
+    private fun convertForecastItemToDomain(forecast: Forecast): com.brasileirao.weatherapp.domain.models.Forecast {
+        return com.brasileirao.weatherapp.domain.models.Forecast(convertDate(forecast.dt),
                 forecast.weather[0].description, forecast.temp.max.toInt(),
                 forecast.temp.min.toInt(),
                 generateIconUrl(forecast.weather[0].icon))
