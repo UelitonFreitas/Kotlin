@@ -34,7 +34,7 @@ class ForecastListAdapter(val weekForecast: ForecastList,
         return weekForecast.size()
     }
 
-    class ViewHolder(view: View, val itemClick: (Forecast) -> Unit) :
+    class ViewHolder(val view: View, val itemClick: (Forecast) -> Unit) :
             RecyclerView.ViewHolder(view) {
 
         fun bindForecast(forecast: Forecast) {
@@ -43,7 +43,7 @@ class ForecastListAdapter(val weekForecast: ForecastList,
                 itemView.date.text = date
                 itemView.maxTemperature.text = "$high"
                 itemView.minTemperature.text = "$low"
-                itemView.setOnClickListener { itemClick(this) }
+                view.setOnClickListener{itemClick(this)}
             }
         }
     }
