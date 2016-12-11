@@ -20,18 +20,18 @@ class ForescastDbHelper(ctx : Context = App.instance) : ManagedSQLiteOpenHelper(
     override fun onCreate(db: SQLiteDatabase) {
 
         db.createTable(CityForecastTable.NAME, true,
-                CityForecastTable.ID tadah INTEGER + PRIMARY_KEY,
-                CityForecastTable.CITY tadah TEXT,
-                CityForecastTable.COUNTRY tadah TEXT)
+                CityForecastTable.ID to INTEGER + PRIMARY_KEY,
+                CityForecastTable.CITY to TEXT,
+                CityForecastTable.COUNTRY to TEXT)
 
         db.createTable(DayForecastTable.NAME, true,
-                DayForecastTable.ID tadah INTEGER + PRIMARY_KEY,
-                DayForecastTable.DATE tadah INTEGER,
-                DayForecastTable.DESCRIPTION tadah TEXT,
-                DayForecastTable.HIGH tadah INTEGER,
-                DayForecastTable.LOW tadah INTEGER,
-                DayForecastTable.ICON_URL tadah TEXT,
-                DayForecastTable.CITY_ID tadah INTEGER
+                DayForecastTable.ID to INTEGER + PRIMARY_KEY,
+                DayForecastTable.DATE to INTEGER,
+                DayForecastTable.DESCRIPTION to TEXT,
+                DayForecastTable.HIGH to INTEGER,
+                DayForecastTable.LOW to INTEGER,
+                DayForecastTable.ICON_URL to TEXT,
+                DayForecastTable.CITY_ID to INTEGER
                 )
     }
 

@@ -41,9 +41,9 @@ class ForecastListAdapter(val weekForecast: ForecastList,
             with(forecast) {
                 Picasso.with(itemView.ctx).load(iconUrl).into(itemView.icon)
                 itemView.date.text = date
-                itemView.maxTemperature.text = "$high"
-                itemView.minTemperature.text = "$low"
-                view.setOnClickListener{itemClick(this)}
+                itemView.maxTemperature.text = "${high.toString()}º"
+                itemView.minTemperature.text = "${low.toString()}º"
+                view.setOnClickListener { itemClick(this) }
             }
         }
     }
